@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "bootstrap3-light.min.js",
+    "inputFiles": [
+      "bootstrap3-light.js"
+    ]
+  },
+  {
+    "outputFileName": "bootstrap4-light.min.js",
+    "inputFiles": [
+      "bootstrap4-light.js"
+    ]
+  }
+]
