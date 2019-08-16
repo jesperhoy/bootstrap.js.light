@@ -1,14 +1,14 @@
-﻿# Bootstrap-Light.js
+﻿# Bootstrap.js.Light
 
 Super lightweight replacement for JQuery and bootstrap.js for Bootstrap v. 4 and v. 3 projects.
 
 No animations etc., just very basic functionality for Modals, Dropdowns, Tabs, Alerts, and Collapses (tool bar).
 
-To use it, simply copy the 'bootstrap4-light.min.js' or 'bootstrap3-light.min.js' file (depending on your version of Bootstrap)
+To use it, simply copy the 'bootstrap4-js-light.min.js' or 'bootstrap3-js-light.min.js' file (depending on your version of Bootstrap)
 to your website and reference it on a web-page (`<script src="bootstrap4-light.min.js"></script>`) and get rid of JQuery and the Bootstrap javascript (bootstrap.js) files/references.
 
-Demo pages: [Bootstrap v. 4](<https://jesperhoy.github.io/bootstrap-light.js/demo-bs4.html>)
-/ [Bootstrap v. 3](https://jesperhoy.github.io/bootstrap-light.js/demo-bs3.html)
+Demo pages: [Bootstrap v. 4](<https://jesperhoy.github.io/bootstrap.js.light/demo-bs4.html>)
+/ [Bootstrap v. 3](https://jesperhoy.github.io/bootstrap.js.light/demo-bs3.html)
 
 It works perfectly with Vue.js (and presummably React, Angular, etc.) - which is why I worte it.
  For more on background and motivation for this project, see <https://jesperhoy.com/p46>
