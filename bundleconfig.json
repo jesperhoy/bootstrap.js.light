@@ -6,7 +6,7 @@
     ]
   },
   {
-    "outputFileName": "bootstrap3-js-light.min.js",
+    "outputFileName": "bootstrap4-js-light.min.js",
     "inputFiles": [
       "bootstrap4-js-light.js"
     ]

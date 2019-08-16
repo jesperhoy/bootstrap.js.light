@@ -1,6 +1,6 @@
 /*!
 * Bootstrap.js.Light for Bootstrap v. 4 (https://github.com/jesperhoy/bootstrap.js.light)
-* Version 0.1.0
+* Version 0.1.1
 * Copyright 2019 Jesper Høy
 * Licensed under the MIT license
 */
