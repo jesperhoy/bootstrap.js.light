@@ -19,10 +19,10 @@ It works perfectly with Vue.js (and presummably React, Angular, etc.) - which is
 #### Modal
 
 - Supports `data-toggle="modal"` / `data-target="#MyModal"` / `href="#MyModal"` on trigger button/link.
-- Or open via JavaScript with `JHBS.ModalShow('#MyModal',<callback>)`
+- Or open via JavaScript with `BSLight.ModalShow('#MyModal',<callback>)`
     (replacing `$('#myModal').modal()` / `$('#myModal').modal('show')`).
 - Supports `data-dismiss="modal"` on trigger elements (like X close button).
-- Or hide via JavaScript with `JHBS.ModalHide(<result-string>)`
+- Or hide via JavaScript with `BSLight.ModalHide(<result-string>)`
     (replacing `$('#myModal').modal('hide')`).
 - Supports `data-keyboard="true/false"` on `.modal` (default = `true`).
 - Supports `data-background="true/false/static"` on `.modal` (default = `true`).
@@ -34,7 +34,7 @@ Bootstrap docs for Modal: [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/com
 
 
 - Supports `data-toggle="dropdown"` on trigger button/link.
-- Or open via JavaScript with `JHBS.Dropdown(<trigger-button/link-element>)`.
+- Or open via JavaScript with `BSLight.Dropdown(<trigger-button/link-element>)`.
 
 Bootstrap docs for Dropdown: [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/dropdowns/)
 / [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#dropdowns)
@@ -42,7 +42,7 @@ Bootstrap docs for Dropdown: [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/
 #### Tab
 
 - Supports `data-toggle="tab"` (or `pill`) / `data-target="#Tab2Content"` / `href="#Tab2Content"` on tab button/link.
-- Or open via JavaScript with `JHBS.Tab(<trigger-button/link-element>,'#Tab2Content')`.
+- Or open via JavaScript with `BSLight.Tab(<trigger-button/link-element>,'#Tab2Content')`.
 
 Bootstrap docs for Tab: [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/navs/#tabs)
 / [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#tabs)
@@ -50,7 +50,7 @@ Bootstrap docs for Tab: [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/compo
 #### Alert
 
 - Supports `data-dismiss="alert"` on trigger element (X close button).
-- Or dismiss via JavaScript with `JHBS.AlertDismiss(<trigger-button-element>)`.
+- Or dismiss via JavaScript with `BSLight.AlertDismiss(<trigger-button-element>)`.
 
 Bootstrap docs for Alert: [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/alerts/)
 / [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#alerts)

@@ -55,7 +55,7 @@
             <h3>Via JavaScript</h3>
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" onclick="JHBS.ModalShow('#myModal2', function (x) { document.getElementById('crv').innerText=x; })">
+            <button type="button" class="btn btn-primary" onclick="BSLight.ModalShow('#myModal2', function (x) { document.getElementById('crv').innerText=x; })">
                 Launch demo modal
             </button>
 
@@ -64,14 +64,14 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" onclick="JHBS.ModalHide('x button')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" onclick="BSLight.ModalHide('x button')" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                         </div>
                         <div class="modal-body">
                             Modal via JavaScript
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" onclick="JHBS.ModalHide('close button')">Close</button>
+                            <button type="button" class="btn btn-default" onclick="BSLight.ModalHide('close button')">Close</button>
                             <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
             <h3>Via JavaScript</h3>
 
             <div class="dropdown">
-                <button class="btn btn-primary" type="button" onclick="JHBS.Dropdown(this)" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-primary" type="button" onclick="BSLight.Dropdown(this)" aria-haspopup="true" aria-expanded="false">
                     Dropdown trigger
                     <span class="caret"></span>
                 </button>
@@ -156,9 +156,9 @@
 
             <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
                 <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a onclick="JHBS.Tab(this, '#home2'); return false" href="#" role="tab" aria-controls="home" aria-expanded="false">Home</a></li>
-                    <li role="presentation"><a onclick="JHBS.Tab(this, '#profile2'); return false" href="#" role="tab" aria-controls="profile" aria-expanded="false">Profile</a></li>
-                    <li role="presentation"><a onclick="JHBS.Tab(this, '#other2'); return false" href="#" role="tab" aria-controls="other" aria-expanded="false">Other</a></li>
+                    <li role="presentation" class="active"><a onclick="BSLight.Tab(this, '#home2'); return false" href="#" role="tab" aria-controls="home" aria-expanded="false">Home</a></li>
+                    <li role="presentation"><a onclick="BSLight.Tab(this, '#profile2'); return false" href="#" role="tab" aria-controls="profile" aria-expanded="false">Profile</a></li>
+                    <li role="presentation"><a onclick="BSLight.Tab(this, '#other2'); return false" href="#" role="tab" aria-controls="other" aria-expanded="false">Other</a></li>
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade active in" id="home2" aria-labelledby="home-tab">
@@ -192,7 +192,7 @@
             <h3>Via JavaScript</h3>
 
             <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                <button type="button" class="close" onclick="JHBS.AlertDismiss(this)" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <button type="button" class="close" onclick="BSLight.AlertDismiss(this)" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
             </div>
 

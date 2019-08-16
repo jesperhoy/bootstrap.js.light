@@ -1,11 +1,11 @@
 /*!
 * Bootstrap.js.Light for Bootstrap v. 3 (https://github.com/jesperhoy/bootstrap.js.light)
-* Version 0.1.0
+* Version 0.2.0
 * Copyright 2019 Jesper Høy
 * Licensed under the MIT license
 */
 
-var JHBS = function () {
+var BSLight = function () {
     var rv = {};
     var DDBtn = null;
     var BtnHEvt = null;
