@@ -1,14 +1,14 @@
 [
   {
-    "outputFileName": "bootstrap3-js-light.min.js",
+    "outputFileName": "bsjslight3.min.js",
     "inputFiles": [
-      "bootstrap3-js-light.js"
+      "bsjslight3.js"
     ]
   },
   {
-    "outputFileName": "bootstrap4-js-light.min.js",
+    "outputFileName": "bsjslight4.min.js",
     "inputFiles": [
-      "bootstrap4-js-light.js"
+      "bsjslight4.js"
     ]
   }
 ]
