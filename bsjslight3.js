@@ -1,6 +1,6 @@
 /*!
 * Bootstrap.js.Light for Bootstrap v. 3 (https://github.com/jesperhoy/bootstrap.js.light)
-* Version 0.2.1
+* Version 0.2.2
 * Copyright 2019 Jesper Høy
 * Licensed under the MIT license
 */
@@ -61,17 +61,23 @@ var BSLight = function () {
 
     rv.ModalShow = function (target, cb) {
         if (ModalE !== null) return;
+        ModalCB = cb === undefined ? null : cb;
+        document.body.classList.add('modal-open');
         ModalE = document.querySelector(target);
         ModalE.style.display = 'block';
-        ModalE.classList.add("in");
         ModalE.addEventListener("click", ModalBDClick);
-        document.body.classList.add('modal-open');
+        ModalBD = null;
         if (ModalE.dataset.backdrop !== 'false') {
             ModalBD = document.createElement("div");
-            ModalBD.className = 'modal-backdrop fade in';
+            ModalBD.className = 'modal-backdrop' + (ModalE.classList.contains('fade') ? ' fade':'');
             document.body.appendChild(ModalBD);
         }
-        ModalCB = cb === undefined ? null : cb;
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                ModalE.classList.add("in");
+                if (ModalBD) ModalBD.classList.add('in');
+            });
+        });
     };
 
     function ModalBDClick(evt) {
@@ -84,15 +90,22 @@ var BSLight = function () {
 
     rv.ModalHide = function (result) {
         if (ModalE === null) return;
-        ModalE.style.display = 'none';
-        ModalE.classList.remove("in");
         ModalE.removeEventListener("click", ModalBDClick);
+        var Fade = ModalE.classList.contains('fade');
+        if (Fade) window.setTimeout(function () { ModalHideComplete(result); },150);
+        ModalE.classList.remove("in");
+        if (ModalBD) ModalBD.classList.remove('in');
+        if (!Fade) ModalHideComplete(result);
+    };
+
+    function ModalHideComplete(result) {
+        ModalE.style.display = 'none';
         document.body.classList.remove('modal-open');
         if (ModalBD !== null) document.body.removeChild(ModalBD);
         ModalE = null;
         ModalBD = null;
         if (ModalCB !== null) ModalCB(result);
-    };
+    }
 
     rv.AlertDismiss = function (btn) {
         var al = btn.parentElement;
@@ -113,7 +126,7 @@ var BSLight = function () {
         lst.forEach(function (li) { li.classList.remove('active'); });
         // add .active to all <li> ancestors of btn
         var e = btn;
-        while (!e===NavTabs) {
+        while (e!==NavTabs) {
             if (e.tagName === 'LI') e.classList.add('active');
             e = e.parentNode;
         }

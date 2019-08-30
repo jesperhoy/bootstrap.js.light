@@ -4,7 +4,7 @@ Super lightweight replacement for JQuery and bootstrap.js for Bootstrap v. 3 and
 
 1.3 KB minified and gzipped. No dependencies.
 
-Only very basic functionality, with no animations, is provided for Modals, Dropdowns, Tabs, Alerts, and Collapses (tool bar).
+Only very basic functionality is provided for Modals, Dropdowns, Tabs, Alerts, and Collapses (tool bar).
 
 To use it, simply copy the 'bsjslight3.min.js' or 'bsjslight4.min.js' file (depending on your version of Bootstrap)
 to your website and reference it on a web-page (`<script src="bsjslight3.min.js"></script>`) and get rid of JQuery and the Bootstrap javascript (bootstrap.js) files/references.
