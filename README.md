@@ -56,12 +56,13 @@ Bootstrap docs for Alert: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/jav
 #### Collapse (fx. Navbar burger)
 
 - Supports `data-toggle="collapse"` / `data-target="#collapse1"` / `href="#collapse1"` on trigger button/link.
-
+ 
 Bootstrap docs for Collapse: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#collapse) / [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/collapse/)
 
 #### Carousel
 
 - Supports `data-ride="carousel"` on root, and `data-slide` / `data-slide-to` / `data-target="#carousel1"` / `href="#carousel1"` on trigger button/link.
+- Or initialize via JavaScript with `BSLight.Carousel(<carousel-element>)`.
 
 Bootstrap docs for Carousel: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#carousel) / [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/carousel/)
 
