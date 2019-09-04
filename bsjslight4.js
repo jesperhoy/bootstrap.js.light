@@ -1,6 +1,6 @@
 /*!
 * Bootstrap.js.Light for Bootstrap v. 4 (https://github.com/jesperhoy/bootstrap.js.light)
-* Version 0.2.2
+* Version 0.3.0
 * Copyright 2019 Jesper Høy
 * Licensed under the MIT license
 */
@@ -11,6 +11,7 @@ var BSLight = function () {
     var BtnHEvt = null;
 
     rv.Dropdown = function (btn) {
+        if (typeof btn === 'string') btn = document.querySelector(btn);
         BtnHEvt = event;
         if (DDBtn !== null) {
             var WasOpen = btn === DDBtn;
@@ -63,7 +64,7 @@ var BSLight = function () {
     rv.ModalShow = function (target, cb) {
         if (ModalE !== null) return;
         ModalCB = cb === undefined ? null : cb;
-        ModalE = document.querySelector(target);
+        ModalE = typeof target==='string' ? document.querySelector(target):target;
         ModalE.addEventListener("click", ModalBDClick);
         ModalE.style.display = 'block';
         ModalE.removeAttribute('aria-hidden');
@@ -113,6 +114,7 @@ var BSLight = function () {
     }
 
     rv.AlertDismiss = function (btn) {
+        if (typeof btn === 'string') btn = document.querySelector(btn);
         var al = btn.parentElement;
         if (al.classList.contains('alert') && al.classList.contains('alert-dismissible')) {
             al.parentElement.removeChild(al);
@@ -120,6 +122,7 @@ var BSLight = function () {
     };
 
     rv.Tab = function (btn, target) {
+        if (typeof btn === 'string') btn = document.querySelector(btn);
         // find parent .nav-tabs
         var NavTabs = btn;
         while (!NavTabs.classList.contains('nav-tabs') && !NavTabs.classList.contains('nav-pills') ) {
@@ -152,6 +155,8 @@ var BSLight = function () {
         var DDBtnWas = DDBtn;
         DDClose();
         var e = evt.target;
+        var attr;
+        var el;
         while (e) {
             switch (e.getAttribute('data-toggle')) {
                 case 'dropdown':
@@ -182,6 +187,28 @@ var BSLight = function () {
                     rv.AlertDismiss(e);
                     return;
             }
+            attr = e.getAttribute('data-slide-to');
+            if (attr) {
+                el = document.querySelector(e.dataset.target || e.getAttribute('href'));
+                if (el) {
+                    Carousels.forEach(function (c) {
+                        if (c.el === el) c.SlideTo(parseInt(attr));
+                    });
+                    evt.preventDefault(); // don't follow link or submit form
+                    return;
+                }
+            }
+            attr = e.getAttribute('data-slide');
+            if (attr === "prev" || attr === "next") {
+                el = document.querySelector(e.dataset.target || e.getAttribute('href'));
+                if (el) {
+                    Carousels.forEach(function (c) {
+                        if (c.el === el) c.Slide(attr === "next" ? 1 : -1);
+                    });
+                    evt.preventDefault(); // don't follow link or submit form
+                    return;
+                }
+            }
             e = e.parentElement;
         }
     });
@@ -197,6 +224,83 @@ var BSLight = function () {
         if (ModalE.dataset.keyboard === 'false') return;
         rv.ModalHide('escape');
     });
+
+    var Carousels = [];
+    rv.Carousel = function (el) {
+        if (typeof el === 'string') el = document.querySelector(el);
+        var x = el.getAttribute('data-interval');
+        var interval = x ? parseInt(x) : 5000;
+        x = el.getAttribute('data-wrap');
+        var wrap = x ? (x === 'true') : true;
+        var paused = false;
+        x = el.getAttribute('data-pause');
+        if (!x || x === 'hover') {
+            el.addEventListener('mouseenter', function () { paused = true; });
+            el.addEventListener('mouseleave', function () { paused = false; });
+        }
+        var items = el.querySelectorAll(".carousel-inner .carousel-item");
+        var idx = 0;
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].classList.contains('active')) {
+                idx = i;
+                break;
+            }
+        }
+        var indicators = el.querySelectorAll(".carousel-indicators li");
+
+        window.setInterval(function () {
+            if (paused) return;
+            if (!wrap && idx === items.length - 1) return;
+            Turn((idx + 1) % items.length, true);
+        }, interval);
+
+        var co = {
+            el: el,
+            SlideTo: function (toIdx) {
+                if (toIdx === idx) return;
+                Turn(toIdx, idx < toIdx);
+            },
+            Slide: function (rel) {
+                if (!wrap && rel === -1 && idx === 0) return;
+                if (!wrap && rel === 1 && idx === items.length - 1) return;
+                Turn((idx + items.length + rel) % items.length, rel > 0);
+            }
+        };
+        Carousels.push(co);
+
+        var CurTurn = 0;
+
+        function Turn(toIdx, left) {
+            CurTurn += 1;
+            var ThisTurn = CurTurn;
+            console.log(idx + " -> " + toIdx);
+            for (var i = 0; i < items.length; i++) {
+                items[i].className = 'carousel-item' + (i === idx ? ' active' : '') + (i === toIdx ? " carousel-item-" + (left ? "next" : "prev") : '');
+                if (indicators.length >= i - 1) indicators[i].className = (i === toIdx ? 'active' : '');
+            }
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    if (CurTurn !== ThisTurn) return;
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].className = 'carousel-item' + (i === idx ? ' active' : '') + (i === toIdx ? " carousel-item-" + (left ? "next" : "prev") : '') + " carousel-item-" + (left ? "left" : "right");
+                    }
+                    idx = toIdx;
+                    window.setTimeout(function () {
+                        if (CurTurn !== ThisTurn) return;
+                        for (var i = 0; i < items.length; i++) {
+                            items[i].className = 'carousel-item' + (i === idx ? ' active' : '');
+                        }
+                    }, 600);
+                });
+            });
+        }
+    };
+
+    window.addEventListener('load', function () {
+        document.querySelectorAll('[data-ride="carousel"]').forEach(rv.Carousel);
+    });
+
+
 
     return rv;
 }();

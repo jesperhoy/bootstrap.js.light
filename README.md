@@ -12,7 +12,7 @@ to your website and reference it on a web-page (`<script src="bsjslight3.min.js"
 
 Demo pages: [Bootstrap v. 3](https://jesperhoy.github.io/bootstrap.js.light/demo-bs3.html) / [Bootstrap v. 4](<https://jesperhoy.github.io/bootstrap.js.light/demo-bs4.html>)
 
-It works perfectly with Vue.js (and presummably React, Angular, etc.) - which is why I worte it.
+It works perfectly with Vue.js (and presummably React, Angular, etc.) - which is why I wrote it.
  For more on background and motivation for this project, see <https://jesperhoy.com/p46>
 
 
@@ -58,6 +58,13 @@ Bootstrap docs for Alert: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/jav
 - Supports `data-toggle="collapse"` / `data-target="#collapse1"` / `href="#collapse1"` on trigger button/link.
 
 Bootstrap docs for Collapse: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#collapse) / [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/collapse/)
+
+#### Carousel
+
+- Supports `data-ride="carousel"` on root, and `data-slide` / `data-slide-to` / `data-target="#carousel1"` / `href="#carousel1"` on trigger button/link.
+
+Bootstrap docs for Carousel: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#carousel) / [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/carousel/)
+
 
 ## Versioning
 
