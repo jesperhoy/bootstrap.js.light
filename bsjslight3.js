@@ -77,6 +77,9 @@ var BSLight = function () {
             requestAnimationFrame(function () {
                 ModalE.classList.add("in");
                 if (ModalBD) ModalBD.classList.add('in');
+                var af = ModalE.querySelector('[autofocus]');
+                if (!af) af = ModalE;
+                af.focus();
             });
         });
     };
@@ -270,7 +273,6 @@ var BSLight = function () {
         function Turn(toIdx, left) {
             CurTurn += 1;
             var ThisTurn = CurTurn;
-            console.log(idx + " -> " + toIdx);
             for (var i = 0; i < items.length; i++) {
                 items[i].className = 'item' + (i === idx ? ' active' : '') + (i === toIdx ? (left ? " next" : " prev") : '');
                 if (indicators.length >= i - 1) indicators[i].className = (i === toIdx ? 'active' : '');
