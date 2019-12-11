@@ -2,9 +2,12 @@
 
 Super lightweight replacement for JQuery and bootstrap.js for Bootstrap v. 3 and v. 4 projects.
 
-2.0 KB minified and gzipped. No dependencies.
+As a small enhancement over the original JQuery/Bootstrap.js, this library also supports opening multiple modals on top of each other (from v. 0.4.0).
 
-Only very basic functionality is provided for Modals, Dropdowns, Tabs, Alerts, and Collapses (tool bar).
+
+2.0 KB minified and gzipped. 
+
+Only very basic functionality is provided for Modals, Dropdowns, Tabs, Alerts, Collapses (tool bar), and Carousel.
 
 To use it, simply copy the 'bsjslight3.min.js' or 'bsjslight4.min.js' file (depending on your version of Bootstrap)
 to your website and reference it on a web-page (`<script src="bsjslight3.min.js"></script>`) and get rid of JQuery and the Bootstrap javascript (bootstrap.js) files/references.
@@ -12,8 +15,7 @@ to your website and reference it on a web-page (`<script src="bsjslight3.min.js"
 
 Demo pages: [Bootstrap v. 3](https://jesperhoy.github.io/bootstrap.js.light/demo-bs3.html) / [Bootstrap v. 4](<https://jesperhoy.github.io/bootstrap.js.light/demo-bs4.html>)
 
-It works perfectly with Vue.js (and presummably React, Angular, etc.) - which is why I wrote it.
- For more on background and motivation for this project, see <https://jesperhoy.com/p46>
+It is designed to work well with Vue.js (and presummably React, Angular, etc.) - which is why I wrote it. But it does not depend on these and can also be used stand-alone. For more on background and motivation for this project, see <https://jesperhoy.com/p46>
 
 
 ## Supported Bootstrap components
@@ -28,8 +30,8 @@ It works perfectly with Vue.js (and presummably React, Angular, etc.) - which is
     (replacing `$('#myModal').modal('hide')`).
 - Supports `data-keyboard="true/false"` on `.modal` (default = `true`).
 - Supports `data-background="true/false/static"` on `.modal` (default = `true`).
-- Supports opening multiple modals on top of each other (from v. 0.4.0).
-- Automatically focuses any form element with `autofocus` attribute within modal.
+- Supports opening multiple modals (from v. 0.4.0). Modals are automatically placed on top of each other (z-index) in the order they are opened. 
+- Automatically focuses first form element with `autofocus` attribute within modal (if any), when modal is opened.
 
 Bootstrap docs for Modal: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#modals) / [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/modal/)
 
@@ -68,6 +70,11 @@ Bootstrap docs for Collapse: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/
 
 Bootstrap docs for Carousel: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#carousel) / [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/carousel/)
 
+## Dependencies 
+
+Only the Bootstrap CSS file. 
+
+No JQuery. No Bootstrap.js.
 
 ## Versioning
 
