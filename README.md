@@ -28,6 +28,8 @@ It works perfectly with Vue.js (and presummably React, Angular, etc.) - which is
     (replacing `$('#myModal').modal('hide')`).
 - Supports `data-keyboard="true/false"` on `.modal` (default = `true`).
 - Supports `data-background="true/false/static"` on `.modal` (default = `true`).
+- Supports opening multiple modals on top of each other (from v. 0.4.0).
+- Automatically focuses any form element with `autofocus` attribute within modal.
 
 Bootstrap docs for Modal: [Bootstrap v. 3](https://getbootstrap.com/docs/3.4/javascript/#modals) / [Bootstrap v. 4](https://getbootstrap.com/docs/4.3/components/modal/)
 
