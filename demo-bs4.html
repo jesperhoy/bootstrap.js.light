@@ -25,64 +25,90 @@
     <div class="card-header h3">Modal</div>
     <div class="card-body">
 
-      <h4>Via data attributes</h4>
+        <h4>Via data attributes</h4>
 
-      <!-- Modal -->
-      <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
+        <!-- Modal -->
+        <div id="exampleModalLive" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Woohoo, you're reading this text in a modal!</p>
+                        <p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive2nd">
+                                Launch 2nd modal
+                            </button>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-              <p>Woohoo, you're reading this text in a modal!</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive">
-        Launch demo modal
-      </button>
-
-
-      <h4>Via JavaScript</h4>
-
-      <!-- Modal -->
-      <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
-              <button type="button" class="close" onclick="BSLight.ModalHide('x button')" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
+        <!-- 2nd Modal -->
+        <div id="exampleModalLive2nd" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLiveLabel">2nd modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Woohoo, you're reading this text in a <b>second</b> modal!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-              <p>Woohoo, you're reading this text in a modal!</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" onclick="BSLight.ModalHide('close button')">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" onclick="BSLight.ModalShow('#exampleModalLive2', function (x) {  document.getElementById('crv').innerText=x; })">
-        Launch demo modal
-      </button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLive">
+            Launch demo modal
+        </button>
 
-      <p style="margin-top:14px"><b>Callback return value:</b> <span id="crv">-</span> </p>
+
+        <h4>Via JavaScript</h4>
+
+        <!-- Modal -->
+        <div id="exampleModalLive2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLiveLabel">Modal title</h5>
+                        <button type="button" class="close" onclick="BSLight.ModalHide('x button')" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Woohoo, you're reading this text in a modal!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="BSLight.ModalHide('close button')">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" onclick="BSLight.ModalShow('#exampleModalLive2', function (x) {  document.getElementById('crv').innerText=x; })">
+            Launch demo modal
+        </button>
+
+        <p style="margin-top:14px"><b>Callback return value:</b> <span id="crv">-</span> </p>
 
 
     </div>

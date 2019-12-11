@@ -1,6 +1,6 @@
 /*!
 * Bootstrap.js.Light for Bootstrap v. 4 (https://github.com/jesperhoy/bootstrap.js.light)
-* Version 0.3.0
+* Version 0.4.0
 * Copyright 2019 Jesper Høy
 * Licensed under the MIT license
 */
@@ -57,63 +57,66 @@ var BSLight = function () {
         });
     };
 
-    var ModalE = null;
-    var ModalBD = null;
-    var ModalCB = null;
+    var Modals = [];
 
     rv.ModalShow = function (target, cb) {
-        if (ModalE !== null) return;
-        ModalCB = cb === undefined ? null : cb;
-        ModalE = typeof target==='string' ? document.querySelector(target):target;
-        ModalE.addEventListener("click", ModalBDClick);
-        ModalE.style.display = 'block';
-        ModalE.removeAttribute('aria-hidden');
-        ModalE.setAttribute('aria-modal', 'true');
-        document.body.classList.add('modal-open');
-        ModalBD = null;
-        if (ModalE.dataset.backdrop !== 'false') {
-            ModalBD = document.createElement("div");
-            ModalBD.className = 'modal-backdrop' + (ModalE.classList.contains('fade') ? ' fade':'');
-            document.body.appendChild(ModalBD);
+        var m = {
+            callback: cb === undefined ? null : cb,
+            elem: typeof target === 'string' ? document.querySelector(target) : target,
+            backdrop: null
+        };
+        Modals.push(m);
+        m.elem.addEventListener("click", ModalBDClick);
+        m.elem.style.display = 'block';
+        m.elem.style.zIndex = 1030 + 20 * Modals.length;
+        m.elem.removeAttribute('aria-hidden');
+        m.elem.setAttribute('aria-modal', 'true');
+        if (Modals.length === 1) document.body.classList.add('modal-open');
+        if (m.elem.dataset.backdrop !== 'false') {
+            m.backdrop = document.createElement("div");
+            m.backdrop.className = 'modal-backdrop' + (m.elem.classList.contains('fade') ? ' fade' : '');
+            m.backdrop.style.zIndex = 1020 + 20 * Modals.length;
+            document.body.appendChild(m.backdrop);
         }
         requestAnimationFrame(function () {
             requestAnimationFrame(function () {
-                ModalE.classList.add("show");
-                if (ModalBD) ModalBD.classList.add('show');
-                var af = ModalE.querySelector('[autofocus]');
-                if (!af) af = ModalE;
+                m.elem.classList.add("show");
+                if (m.backdrop) m.backdrop.classList.add('show');
+                var af = m.elem.querySelector('[autofocus]');
+                if (!af) af = m.elem;
                 af.focus();
             });
         });
     };
 
     function ModalBDClick(evt) {
-        if (ModalE === null) return;
-        if (evt.target !== ModalE) return;
-        var dbd = ModalE.dataset.backdrop;
+        if (Modals.length === 0) return;
+        var m = Modals[Modals.length - 1];
+        if (evt.target !== m.elem) return;
+        var dbd = m.elem.dataset.backdrop;
         if (dbd === 'false' || dbd === 'static') return;
         rv.ModalHide('backdrop');
     }
 
     rv.ModalHide = function (result) {
-        if (ModalE === null) return;
-        ModalE.removeEventListener("click", ModalBDClick);
-        ModalE.setAttribute('aria-hidden', 'true');
-        ModalE.removeAttribute('aria-modal');
-        var Fade = ModalE.classList.contains('fade');
+        if (Modals.length === 0) return;
+        var m = Modals[Modals.length - 1];
+        m.elem.removeEventListener("click", ModalBDClick);
+        m.elem.setAttribute('aria-hidden', 'true');
+        m.elem.removeAttribute('aria-modal');
+        var Fade = m.elem.classList.contains('fade');
         if (Fade) window.setTimeout(function () { ModalHideComplete(result); }, 150);
-        ModalE.classList.remove("show");
-        if (ModalBD) ModalBD.classList.remove('show');
+        m.elem.classList.remove("show");
+        if (m.backdrop) m.backdrop.classList.remove('show');
         if (!Fade) ModalHideComplete(result);
     };
 
     function ModalHideComplete(result) {
-        ModalE.style.display = 'none';
-        document.body.classList.remove('modal-open');
-        if (ModalBD !== null) document.body.removeChild(ModalBD);
-        ModalE = null;
-        ModalBD = null;
-        if (ModalCB !== null) ModalCB(result);
+        var m = Modals.pop();
+        m.elem.style.display = 'none';
+        if(Modals.length===0) document.body.classList.remove('modal-open');
+        if (m.backdrop !== null) document.body.removeChild(m.backdrop);
+        if (m.callback !== null) m.callback(result);
     }
 
     rv.AlertDismiss = function (btn) {
@@ -223,8 +226,9 @@ var BSLight = function () {
             DDClose();
             return;
         }
-        if (ModalE === null) return;
-        if (ModalE.dataset.keyboard === 'false') return;
+        if (Modals.length === 0) return;
+        var m = Modals[Modals.length - 1];
+        if (m.elem.dataset.keyboard === 'false') return;
         rv.ModalHide('escape');
     });
 
