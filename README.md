@@ -2,7 +2,7 @@
 
 Super lightweight replacement for JQuery and bootstrap.js for Bootstrap v. 3 and v. 4 projects.
 
-1.3 KB minified and gzipped. No dependencies.
+2.0 KB minified and gzipped. No dependencies.
 
 Only very basic functionality is provided for Modals, Dropdowns, Tabs, Alerts, and Collapses (tool bar).
 
