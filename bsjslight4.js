@@ -1,7 +1,7 @@
 /*!
 * Bootstrap.js.Light for Bootstrap v. 4 (https://github.com/jesperhoy/bootstrap.js.light)
-* Version 0.4.0
-* Copyright 2019 Jesper Høy
+* Version 0.5.0
+* Copyright 2019-2020 Jesper Høy
 * Licensed under the MIT license
 */
 
@@ -59,9 +59,9 @@ var BSLight = function () {
 
     var Modals = [];
 
-    rv.ModalShow = function (target, cb) {
+    rv.ModalShow = function (target, cbClosed, cbShown) {
         var m = {
-            callback: cb === undefined ? null : cb,
+            cbClosed: cbClosed,
             elem: typeof target === 'string' ? document.querySelector(target) : target,
             backdrop: null
         };
@@ -78,13 +78,17 @@ var BSLight = function () {
             m.backdrop.style.zIndex = 1020 + 20 * Modals.length;
             document.body.appendChild(m.backdrop);
         }
+        m.elem.querySelector('.modal-dialog').addEventListener("transitionend",
+            function () {
+              var af = m.elem.querySelector('[autofocus]');
+              if (!af) af = m.elem;
+              af.focus();
+              if (cbShown) cbShown();
+            }, { once: true });
         requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-                m.elem.classList.add("show");
-                if (m.backdrop) m.backdrop.classList.add('show');
-                var af = m.elem.querySelector('[autofocus]');
-                if (!af) af = m.elem;
-                af.focus();
+          requestAnimationFrame(function () {
+            m.elem.classList.add("show");
+            if (m.backdrop) m.backdrop.classList.add('show');
             });
         });
     };
@@ -98,25 +102,29 @@ var BSLight = function () {
         rv.ModalHide('backdrop');
     }
 
-    rv.ModalHide = function (result) {
+    rv.ModalHide = function (trigger,cb) {
         if (Modals.length === 0) return;
         var m = Modals[Modals.length - 1];
         m.elem.removeEventListener("click", ModalBDClick);
         m.elem.setAttribute('aria-hidden', 'true');
         m.elem.removeAttribute('aria-modal');
         var Fade = m.elem.classList.contains('fade');
-        if (Fade) window.setTimeout(function () { ModalHideComplete(result); }, 150);
+        if (Fade) {
+          m.elem.querySelector('.modal-dialog').addEventListener("transitionend",
+            function () { ModalHideComplete(trigger, cb); }, { once: true });
+        }
         m.elem.classList.remove("show");
         if (m.backdrop) m.backdrop.classList.remove('show');
-        if (!Fade) ModalHideComplete(result);
+        if (!Fade) ModalHideComplete(trigger,cb);
     };
 
-    function ModalHideComplete(result) {
+    function ModalHideComplete(trigger,cb) {
         var m = Modals.pop();
         m.elem.style.display = 'none';
         if(Modals.length===0) document.body.classList.remove('modal-open');
         if (m.backdrop !== null) document.body.removeChild(m.backdrop);
-        if (m.callback !== null) m.callback(result);
+        if (m.cbClosed) m.cbClosed(trigger);
+        if (cb) cb();
     }
 
     rv.AlertDismiss = function (btn) {

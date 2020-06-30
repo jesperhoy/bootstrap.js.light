@@ -23,10 +23,10 @@ It is designed to work well with Vue.js (and presummably React, Angular, etc.) -
 #### Modal
 
 - Supports `data-toggle="modal"` / `data-target="#MyModal"` / `href="#MyModal"` on trigger button/link.
-- Or open via JavaScript with `BSLight.ModalShow('#MyModal',<callback>)`
+- Or open via JavaScript with `BSLight.ModalShow('#MyModal',<callbackClosed>,<callbackShown>)`
     (replacing `$('#myModal').modal()` / `$('#myModal').modal('show')`).
 - Supports `data-dismiss="modal"` on trigger elements (like X close button).
-- Or hide via JavaScript with `BSLight.ModalHide(<result-string>)`
+- Or hide via JavaScript with `BSLight.ModalHide(<result-string>,<callbackHidden>)`
     (replacing `$('#myModal').modal('hide')`).
 - Supports `data-keyboard="true/false"` on `.modal` (default = `true`).
 - Supports `data-background="true/false/static"` on `.modal` (default = `true`).
