@@ -1,6 +1,6 @@
 /*!
 * Bootstrap.js.Light for Bootstrap v. 3 (https://github.com/jesperhoy/bootstrap.js.light)
-* Version 0.5.0
+* Version 0.5.1
 * Copyright 2019-2020 Jesper Høy
 * Licensed under the MIT license
 */
@@ -68,7 +68,16 @@ var BSLight = function () {
         m.elem.addEventListener("click", ModalBDClick);
         m.elem.style.display = 'block';
         m.elem.style.zIndex = 1030 + 20 * Modals.length;
-        if(Modals.length===1) document.body.classList.add('modal-open');
+        if (Modals.length === 1) {
+          m.bodypr = document.body.style.paddingRight;
+          var sbw = window.innerWidth - document.body.clientWidth;
+          if (sbw > 0) {
+            var opr = parseInt(m.bodypr);
+            opr = isNaN(opr) ? 0 : opr;
+            document.body.style.paddingRight = (sbw + opr) + 'px';
+          }
+          document.body.classList.add('modal-open');
+        }
         if (m.elem.dataset.backdrop !== 'false') {
             m.backdrop = document.createElement("div");
             m.backdrop.className = 'modal-backdrop' + (m.elem.classList.contains('fade') ? ' fade' : '');
@@ -119,7 +128,10 @@ var BSLight = function () {
     function ModalHideComplete(trigger,cb) {
         var m = Modals.pop();
         m.elem.style.display = 'none';
-        if (Modals.length === 0) document.body.classList.remove('modal-open');
+        if (Modals.length === 0) {
+          document.body.style.paddingRight = m.bodypr;
+          document.body.classList.remove('modal-open');
+        }
         if (m.backdrop !== null) document.body.removeChild(m.backdrop);
         if (m.cbClosed) m.cbClosed(trigger);
         if (cb) cb();
