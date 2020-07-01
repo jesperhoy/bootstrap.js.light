@@ -1,6 +1,6 @@
 /*!
 * Bootstrap.js.Light for Bootstrap v. 4 (https://github.com/jesperhoy/bootstrap.js.light)
-* Version 0.5.1
+* Version 0.5.2
 * Copyright 2019-2020 Jesper Høy
 * Licensed under the MIT license
 */
@@ -63,7 +63,8 @@ var BSLight = function () {
         var m = {
             cbClosed: cbClosed,
             elem: typeof target === 'string' ? document.querySelector(target) : target,
-            backdrop: null
+            backdrop: null,
+            bottom: Modals.length === 0
         };
         Modals.push(m);
         m.elem.addEventListener("click", ModalBDClick);
@@ -71,7 +72,7 @@ var BSLight = function () {
         m.elem.style.zIndex = 1030 + 20 * Modals.length;
         m.elem.removeAttribute('aria-hidden');
         m.elem.setAttribute('aria-modal', 'true');
-        if (Modals.length === 1) {
+        if (m.bottom) {
           m.bodypr = document.body.style.paddingRight;
           var sbw = window.innerWidth - document.body.clientWidth;
           if (sbw > 0) {
@@ -113,24 +114,21 @@ var BSLight = function () {
 
     rv.ModalHide = function (trigger,cb) {
         if (Modals.length === 0) return;
-        var m = Modals[Modals.length - 1];
+        var m = Modals.pop();
         m.elem.removeEventListener("click", ModalBDClick);
         m.elem.setAttribute('aria-hidden', 'true');
         m.elem.removeAttribute('aria-modal');
         var Fade = m.elem.classList.contains('fade');
-        if (Fade) {
-          m.elem.querySelector('.modal-dialog').addEventListener("transitionend",
-            function () { ModalHideComplete(trigger, cb); }, { once: true });
-        }
+        if (Fade) window.setTimeout(function () { ModalHideComplete(m,trigger,cb); }, 150);
         m.elem.classList.remove("show");
         if (m.backdrop) m.backdrop.classList.remove('show');
-        if (!Fade) ModalHideComplete(trigger,cb);
+        if (!Fade) ModalHideComplete(m, trigger,cb);
     };
 
-    function ModalHideComplete(trigger,cb) {
-        var m = Modals.pop();
+    function ModalHideComplete(m, trigger, cb) {
+        if (!document.body.contains(m.elem)) console.warn('Modal not in DOM at HideComplete');
         m.elem.style.display = 'none';
-        if (Modals.length === 0) {
+        if (m.bottom) {
           document.body.classList.remove('modal-open');
           document.body.style.paddingRight = m.bodypr;
         }
