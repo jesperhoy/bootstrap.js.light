@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jesperhoy.bsjslight3</id>
+    <version>0.2.1</version>
+    <title>Bootstrap.js.Light for Bootstrap v. 3</title>
+    <authors>Jesper Høy</authors>
+    <owners>Jesper Høy</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/jesperhoy/bootstrap.js.light</projectUrl>
+    <description>Super lightweight replacement for JQuery and bootstrap.js for Bootstrap v. 3 projects.</description>
+    <copyright>Copyright 2019 Jesper Høy</copyright>
+  </metadata>
+  <files>
+    <file src="bsjslight3.min.js" target="content\scripts\bsjslight3.min.js" />
+  </files>
+</package>
